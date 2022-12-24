@@ -88,7 +88,7 @@
         <h2 class="products__title">Fetured Items</h2>
         <p class="products__text">Shop for items based on what we featured in this week</p>
         <div class="products__items">
-
+            <!-- Вот сюда -->
         </div>
         <button class="products__button">Browse All Product
         </button>
@@ -166,6 +166,63 @@
 
         </div>
     </footer>
+
+    <script src="data.js"></script>
+    <script>
+        const productsData = JSON.parse(productsItems);
+
+        productsData.forEach(element => {
+            const productsItemsEl = document.querySelector('.products__items');
+            const productsItemEl = document.createElement('div');
+            productsItemEl.classList.add('products__item');
+            productsItemsEl.appendChild(productsItemEl);
+
+            const productsItemImgBoxEl = document.createElement('div');
+            productsItemImgBoxEl.classList.add('products__item-img');
+            productsItemEl.appendChild(productsItemImgBoxEl);
+
+            const productsItemDescEl = document.createElement('div');
+            productsItemDescEl.classList.add('products__item-desc');
+            productsItemEl.appendChild(productsItemDescEl);
+
+            const productsItemImgEl = document.createElement('img');
+            productsItemImgEl.classList.add('products__item-img_size');
+            productsItemImgEl.src = element.img_src;
+            productsItemImgEl.alt = element.img_name;
+            productsItemImgBoxEl.appendChild(productsItemImgEl);
+
+            const productsItemImgFrontEl = document.createElement('div');
+            productsItemImgFrontEl.classList.add('products__item-img_front');
+            productsItemImgBoxEl.appendChild(productsItemImgFrontEl);
+
+            const itemImgLinkEl = document.createElement('a');
+            itemImgLinkEl.classList.add('item-img__link');
+            itemImgLinkEl.href = element.link;
+            productsItemImgFrontEl.appendChild(itemImgLinkEl);
+
+            const productsItemImgHoverEl = document.createElement('img');
+            productsItemImgHoverEl.classList.add('products__item-img_size');
+            productsItemImgHoverEl.src = "img/product-item-hover.svg";
+            productsItemImgHoverEl.alt = "products item front";
+            itemImgLinkEl.appendChild(productsItemImgHoverEl);
+
+
+            const productsItemTitleEl = document.createElement('h3');
+            productsItemTitleEl.classList.add('products__item-title');
+            productsItemTitleEl.textContent = element.product_name;
+            productsItemDescEl.appendChild(productsItemTitleEl);
+
+            const productsItemTextEl = document.createElement('p');
+            productsItemTextEl.classList.add('products__item-text');
+            productsItemTextEl.textContent = element.product_desc;
+            productsItemDescEl.appendChild(productsItemTextEl);
+
+            const productsItemPriceEl = document.createElement('span');
+            productsItemPriceEl.classList.add('products__item-price');
+            productsItemPriceEl.textContent = element.price;
+            productsItemDescEl.appendChild(productsItemPriceEl);
+        });
+    </script>
 </body>
 
 </html>
